@@ -2349,7 +2349,7 @@ export default function QuickLogModal({
         </div>
       </div>
 
-      <style jsx>{`
+      <style jsx global>{`
         .quick-modal-root {
           position: fixed;
           inset: 0;
@@ -2910,6 +2910,5 @@ export default function QuickLogModal({
     </div>
   );
 }
-
 
 
