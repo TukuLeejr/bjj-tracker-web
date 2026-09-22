@@ -734,3 +734,109 @@ button {
 
 
 
+
+/* Mobile interaction/layout hardening */
+@media (max-width: 759px) {
+  .control-block {
+    min-width: 0;
+  }
+
+  .stepper {
+    grid-template-columns:
+      54px
+      minmax(0, 1fr)
+      54px;
+  }
+
+  .stepper-value {
+    overflow: hidden;
+    font-size: 22px;
+  }
+
+  .stepper-suffix {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .quick-values {
+    grid-template-columns:
+      repeat(
+        3,
+        minmax(
+          0,
+          1fr
+        )
+      );
+  }
+
+  .quick-value-button {
+    width: 100%;
+    min-width: 0;
+    padding: 8px 6px;
+    font-size: 11px;
+  }
+
+  .option-selector {
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(
+          0,
+          1fr
+        )
+      );
+  }
+
+  .option-button {
+    width: 100%;
+    min-width: 0;
+    padding: 9px 7px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .rating-control {
+    min-width: 0;
+  }
+
+  .rating-selector {
+    width: 100%;
+    grid-template-columns:
+      repeat(
+        5,
+        minmax(
+          0,
+          1fr
+        )
+      );
+    gap: 6px;
+  }
+
+  .rating-button {
+    width: 100%;
+    min-width: 0;
+    min-height: 44px;
+    padding: 0;
+  }
+
+  .picker-field {
+    min-width: 0;
+  }
+
+  .sheet-overlay {
+    min-height: 100dvh;
+    padding:
+      8px
+      8px
+      max(
+        8px,
+        env(safe-area-inset-bottom)
+      );
+  }
+
+  .picker-sheet {
+    width: 100%;
+  }
+}
+

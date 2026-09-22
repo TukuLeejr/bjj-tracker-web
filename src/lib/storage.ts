@@ -1026,30 +1026,67 @@ async function getCurrentUserId() {
   const supabase =
     createSupabase();
 
+  /*
+   * On iPhone/PWA installs, reading the existing browser session first is
+   * more reliable than immediately forcing a network user lookup.
+   * The Supabase client will still attach the access token to database calls.
+   */
   const {
-    data,
-    error,
+    data:
+      sessionData,
+    error:
+      sessionError,
+  } =
+    await supabase.auth.getSession();
+
+  if (
+    sessionError
+  ) {
+    console.warn(
+      'SUPABASE SESSION ERROR:',
+      sessionError
+    );
+  }
+
+  if (
+    sessionData.session?.user
+  ) {
+    return {
+      supabase,
+      userId:
+        sessionData.session.user.id,
+    };
+  }
+
+  const {
+    data:
+      userData,
+    error:
+      userError,
   } =
     await supabase.auth.getUser();
 
   if (
-    error
+    userError
   ) {
-    throw error;
+    console.error(
+      'SUPABASE USER ERROR:',
+      userError
+    );
   }
 
   if (
-    !data.user
+    !userData.user
   ) {
     throw new Error(
-      'You are not signed in.'
+      'You are signed out on this device. Open the Login page and sign in again, then retry.'
     );
   }
 
   return {
     supabase,
     userId:
-      data.user.id,
+      userData.user.id,
   };
 }
 
@@ -1205,6 +1242,7 @@ async function writeCloudData(
     await getCurrentUserId();
 
   const {
+    data,
     error,
   } =
     await supabase
@@ -1219,12 +1257,25 @@ async function writeCloudData(
       .eq(
         'user_id',
         userId
+      )
+      .select(
+        'user_id'
       );
 
   if (
     error
   ) {
     throw error;
+  }
+
+  if (
+    !data ||
+    data.length ===
+      0
+  ) {
+    throw new Error(
+      'Cloud save did not update your user row. Sign in again on this device and retry.'
+    );
   }
 }
 
@@ -1762,5 +1813,6 @@ export async function importBackupJson(
       ),
   };
 }
+
 
 

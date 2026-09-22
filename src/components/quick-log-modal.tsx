@@ -1231,8 +1231,13 @@ export default function QuickLogModal({
         false
       );
 
+      const message =
+        error instanceof Error
+          ? error.message
+          : 'Unknown save error.';
+
       window.alert(
-        'Could not save session. Please try again.'
+        `Could not save session. ${message}`
       );
     }
   }
@@ -2754,6 +2759,138 @@ export default function QuickLogModal({
           height: 50px;
         }
 
+
+        @media (max-width: 759px) {
+          .quick-modal-root {
+            align-items: flex-end;
+            padding:
+              8px
+              8px
+              max(
+                8px,
+                env(safe-area-inset-bottom)
+              );
+          }
+
+          .quick-modal-panel {
+            width: 100%;
+            max-height:
+              calc(
+                100dvh -
+                16px -
+                env(safe-area-inset-bottom)
+              );
+            border-radius:
+              22px
+              22px
+              16px
+              16px;
+          }
+
+          .quick-modal-scroll {
+            max-height:
+              calc(
+                100dvh -
+                38px -
+                env(safe-area-inset-bottom)
+              );
+            padding:
+              12px
+              16px
+              calc(
+                30px +
+                env(safe-area-inset-bottom)
+              );
+            overscroll-behavior:
+              contain;
+          }
+
+          h2 {
+            font-size: 30px;
+          }
+
+          .stack {
+            gap: 20px;
+          }
+
+          .subheader-row {
+            align-items: flex-start;
+            gap: 10px;
+          }
+
+          .subheader-row > div {
+            min-width: 0;
+          }
+
+          .secondary-action {
+            flex: 0 0 auto;
+            min-width: 92px;
+          }
+
+          .logged-main {
+            align-items: flex-start;
+            gap: 10px;
+          }
+
+          .logged-main > div:first-child {
+            min-width: 0;
+          }
+
+          .roll-stats {
+            min-width: 62px;
+          }
+
+          .logged-technique {
+            align-items: flex-start;
+            gap: 10px;
+          }
+
+          .logged-technique > div:first-child {
+            min-width: 0;
+          }
+
+          .technique-right {
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 4px;
+          }
+
+          .submission-grid {
+            display: grid;
+            grid-template-columns:
+              repeat(
+                2,
+                minmax(
+                  0,
+                  1fr
+                )
+              );
+            gap: 8px;
+          }
+
+          .submission-item {
+            min-width: 0;
+          }
+
+          .submission-button {
+            width: 100%;
+            min-width: 0;
+            height: 44px;
+            padding: 0 9px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+
+          .minus-button {
+            flex: 0 0 34px;
+          }
+
+          .primary-action {
+            width: 100%;
+          }
+        }
+
         @media (min-width: 760px) {
           .quick-modal-root {
             align-items: center;
@@ -2773,4 +2910,6 @@ export default function QuickLogModal({
     </div>
   );
 }
+
+
 

@@ -309,6 +309,22 @@ export default function ProfilePage() {
       window.alert(
         'Your profile and goals were updated.'
       );
+    } catch (
+      error
+    ) {
+      console.error(
+        'PROFILE SAVE ERROR:',
+        error
+      );
+
+      const message =
+        error instanceof Error
+          ? error.message
+          : 'Unknown save error.';
+
+      window.alert(
+        `Could not save profile. ${message}`
+      );
     } finally {
       setSaving(
         false

@@ -52,18 +52,73 @@ function ratingColor(value: number) {
   return '#30D158';
 }
 
-function clampToStep(
+function clampValue(
   value: number,
   min: number,
   max: number
 ) {
-  return Math.min(max, Math.max(min, value));
+  return Math.min(
+    max,
+    Math.max(
+      min,
+      value
+    )
+  );
 }
 
-function displayNumber(value: number) {
-  return Number.isInteger(value)
-    ? String(value)
-    : String(Number(value.toFixed(2)));
+function displayNumber(
+  value: number
+) {
+  return Number.isInteger(
+    value
+  )
+    ? String(
+        value
+      )
+    : String(
+        Number(
+          value.toFixed(
+            2
+          )
+        )
+      );
+}
+
+function quickLabel(
+  value: number,
+  suffix?: string
+) {
+  if (
+    suffix === 'hours'
+  ) {
+    return `${displayNumber(
+      value
+    )}h`;
+  }
+
+  if (
+    suffix === 'minutes'
+  ) {
+    return `${displayNumber(
+      value
+    )}m`;
+  }
+
+  if (
+    suffix === 'kg'
+  ) {
+    return `${displayNumber(
+      value
+    )} kg`;
+  }
+
+  return suffix
+    ? `${displayNumber(
+        value
+      )} ${suffix}`
+    : displayNumber(
+        value
+      );
 }
 
 export function NumberStepper({
@@ -76,6 +131,22 @@ export function NumberStepper({
   suffix,
   quickValues = [],
 }: NumberStepperProps) {
+  function update(
+    next: number
+  ) {
+    onChange(
+      clampValue(
+        Number(
+          next.toFixed(
+            4
+          )
+        ),
+        min,
+        max
+      )
+    );
+  }
+
   return (
     <div className="control-block">
       {label ? (
@@ -88,15 +159,14 @@ export function NumberStepper({
         <button
           type="button"
           className="stepper-button"
-          disabled={value <= min}
+          disabled={
+            value <= min
+          }
           aria-label="Decrease"
           onClick={() =>
-            onChange(
-              clampToStep(
-                Number((value - step).toFixed(4)),
-                min,
-                max
-              )
+            update(
+              value -
+                step
             )
           }
         >
@@ -105,7 +175,9 @@ export function NumberStepper({
 
         <div className="stepper-value">
           <span>
-            {displayNumber(value)}
+            {displayNumber(
+              value
+            )}
           </span>
 
           {suffix ? (
@@ -118,15 +190,14 @@ export function NumberStepper({
         <button
           type="button"
           className="stepper-button"
-          disabled={value >= max}
+          disabled={
+            value >= max
+          }
           aria-label="Increase"
           onClick={() =>
-            onChange(
-              clampToStep(
-                Number((value + step).toFixed(4)),
-                min,
-                max
-              )
+            update(
+              value +
+                step
             )
           }
         >
@@ -134,37 +205,42 @@ export function NumberStepper({
         </button>
       </div>
 
-      {quickValues.length > 0 ? (
+      {quickValues.length >
+      0 ? (
         <div className="quick-values">
-          {quickValues.map((quickValue) => {
-            const active = value === quickValue;
+          {quickValues.map(
+            (
+              quickValue
+            ) => {
+              const active =
+                value ===
+                quickValue;
 
-            return (
-              <button
-                type="button"
-                key={quickValue}
-                className={
-                  active
-                    ? 'quick-value-button active'
-                    : 'quick-value-button'
-                }
-                onClick={() =>
-                  onChange(
-                    clampToStep(
-                      quickValue,
-                      min,
-                      max
+              return (
+                <button
+                  type="button"
+                  key={
+                    quickValue
+                  }
+                  className={
+                    active
+                      ? 'quick-value-button active'
+                      : 'quick-value-button'
+                  }
+                  onClick={() =>
+                    update(
+                      quickValue
                     )
-                  )
-                }
-              >
-                {displayNumber(quickValue)}
-                {suffix
-                  ? ` ${suffix}`
-                  : ''}
-              </button>
-            );
-          })}
+                  }
+                >
+                  {quickLabel(
+                    quickValue,
+                    suffix
+                  )}
+                </button>
+              );
+            }
+          )}
         </div>
       ) : null}
     </div>
@@ -186,27 +262,36 @@ export function OptionSelector({
       ) : null}
 
       <div className="option-selector">
-        {options.map((option) => {
-          const active =
-            option.value === value;
+        {options.map(
+          (
+            option
+          ) => {
+            const active =
+              option.value ===
+              value;
 
-          return (
-            <button
-              type="button"
-              key={option.value}
-              className={
-                active
-                  ? 'option-button active'
-                  : 'option-button'
-              }
-              onClick={() =>
-                onChange(option.value)
-              }
-            >
-              {option.label}
-            </button>
-          );
-        })}
+            return (
+              <button
+                type="button"
+                key={
+                  option.value
+                }
+                className={
+                  active
+                    ? 'option-button active'
+                    : 'option-button'
+                }
+                onClick={() =>
+                  onChange(
+                    option.value
+                  )
+                }
+              >
+                {option.label}
+              </button>
+            );
+          }
+        )}
       </div>
     </div>
   );
@@ -218,41 +303,56 @@ export function RatingSelector({
   onChange,
 }: RatingSelectorProps) {
   return (
-    <div className="control-block">
+    <div className="control-block rating-control">
       <div className="control-label">
         {label}
       </div>
 
       <div className="rating-selector">
-        {[1, 2, 3, 4, 5].map(
-          (number) => {
+        {[
+          1,
+          2,
+          3,
+          4,
+          5,
+        ].map(
+          (
+            number
+          ) => {
             const active =
-              value === number;
+              value ===
+              number;
+
+            const color =
+              ratingColor(
+                number
+              );
 
             return (
               <button
                 type="button"
-                key={number}
+                key={
+                  number
+                }
                 className={
                   active
                     ? 'rating-button active'
                     : 'rating-button'
                 }
-                style={
-                  active
+                style={{
+                  borderColor:
+                    color,
+                  ...(active
                     ? {
                         background:
-                          ratingColor(number),
-                        borderColor:
-                          ratingColor(number),
+                          color,
                       }
-                    : {
-                        borderColor:
-                          ratingColor(number),
-                      }
-                }
+                    : {}),
+                }}
                 onClick={() =>
-                  onChange(number)
+                  onChange(
+                    number
+                  )
                 }
               >
                 {number}
@@ -279,7 +379,9 @@ export function PickerField({
       <button
         type="button"
         className="picker-field"
-        onClick={onPress}
+        onClick={
+          onPress
+        }
       >
         <span className="picker-field-value">
           {value}
@@ -301,7 +403,9 @@ export function DateTimePickerSheet({
   onChange,
   onClose,
 }: DateTimePickerSheetProps) {
-  if (!visible) {
+  if (
+    !visible
+  ) {
     return null;
   }
 
@@ -310,44 +414,72 @@ export function DateTimePickerSheet({
       ? [
           value.getFullYear(),
           String(
-            value.getMonth() + 1
-          ).padStart(2, '0'),
+            value.getMonth() +
+              1
+          ).padStart(
+            2,
+            '0'
+          ),
           String(
             value.getDate()
-          ).padStart(2, '0'),
-        ].join('-')
+          ).padStart(
+            2,
+            '0'
+          ),
+        ].join(
+          '-'
+        )
       : [
           String(
             value.getHours()
-          ).padStart(2, '0'),
+          ).padStart(
+            2,
+            '0'
+          ),
           String(
             value.getMinutes()
-          ).padStart(2, '0'),
-        ].join(':');
+          ).padStart(
+            2,
+            '0'
+          ),
+        ].join(
+          ':'
+        );
 
   function handleValueChange(
     nextValue: string
   ) {
-    if (!nextValue) {
+    if (
+      !nextValue
+    ) {
       return;
     }
 
     const next =
-      new Date(value);
+      new Date(
+        value
+      );
 
-    if (mode === 'date') {
+    if (
+      mode === 'date'
+    ) {
       const [
         year,
         month,
         day,
       ] =
         nextValue
-          .split('-')
-          .map(Number);
+          .split(
+            '-'
+          )
+          .map(
+            Number
+          );
 
       next.setFullYear(
         year,
-        month - 1,
+        month -
+          1,
         day
       );
     } else {
@@ -356,8 +488,12 @@ export function DateTimePickerSheet({
         minute,
       ] =
         nextValue
-          .split(':')
-          .map(Number);
+          .split(
+            ':'
+          )
+          .map(
+            Number
+          );
 
       next.setHours(
         hour,
@@ -367,14 +503,18 @@ export function DateTimePickerSheet({
       );
     }
 
-    onChange(next);
+    onChange(
+      next
+    );
   }
 
   return (
     <div
       className="sheet-overlay"
       role="presentation"
-      onMouseDown={(event) => {
+      onMouseDown={(
+        event
+      ) => {
         if (
           event.target ===
           event.currentTarget
@@ -387,7 +527,9 @@ export function DateTimePickerSheet({
         className="picker-sheet"
         role="dialog"
         aria-modal="true"
-        aria-label={title}
+        aria-label={
+          title
+        }
       >
         <div className="picker-sheet-header">
           <div className="picker-sheet-title">
@@ -397,7 +539,9 @@ export function DateTimePickerSheet({
           <button
             type="button"
             className="picker-sheet-close"
-            onClick={onClose}
+            onClick={
+              onClose
+            }
           >
             DONE
           </button>
@@ -405,11 +549,18 @@ export function DateTimePickerSheet({
 
         <input
           className="native-picker"
-          type={mode}
-          value={inputValue}
-          onChange={(event) =>
+          type={
+            mode
+          }
+          value={
+            inputValue
+          }
+          onChange={(
+            event
+          ) =>
             handleValueChange(
-              event.target.value
+              event.target
+                .value
             )
           }
         />

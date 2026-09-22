@@ -1254,8 +1254,13 @@ export default function TrainPage() {
         false
       );
 
+      const message =
+        error instanceof Error
+          ? error.message
+          : 'Unknown save error.';
+
       window.alert(
-        'Could not save this session.'
+        `Could not save this session. ${message}`
       );
     }
   }
@@ -3040,6 +3045,156 @@ export default function TrainPage() {
           font-weight: 900;
         }
 
+
+        @media (max-width: 759px) {
+          .train-page {
+            width: 100%;
+            min-width: 0;
+          }
+
+          .train-header,
+          .section-header-row,
+          .saved-roll,
+          .technique-log {
+            min-width: 0;
+          }
+
+          .modal-root {
+            align-items: flex-end;
+            padding:
+              8px
+              8px
+              max(
+                8px,
+                env(safe-area-inset-bottom)
+              );
+          }
+
+          .modal-panel {
+            width: 100%;
+            max-height:
+              calc(
+                100dvh -
+                16px -
+                env(safe-area-inset-bottom)
+              );
+            border-radius:
+              22px
+              22px
+              16px
+              16px;
+          }
+
+          .modal-scroll {
+            max-height:
+              calc(
+                100dvh -
+                24px -
+                env(safe-area-inset-bottom)
+              );
+            padding:
+              20px
+              16px
+              calc(
+                28px +
+                env(safe-area-inset-bottom)
+              );
+            overscroll-behavior:
+              contain;
+          }
+
+          .modal-title {
+            font-size: 30px;
+          }
+
+          .modal-duration {
+            font-size: 40px;
+          }
+
+          .rating-stack {
+            gap: 16px;
+          }
+
+          .session-summary {
+            grid-template-columns:
+              repeat(
+                3,
+                minmax(
+                  0,
+                  1fr
+                )
+              );
+            gap: 6px;
+            padding: 15px 10px;
+          }
+
+          .session-summary span {
+            font-size: 8px;
+            letter-spacing: 0.04em;
+          }
+
+          .session-summary strong {
+            font-size: 23px;
+          }
+
+          .saved-roll {
+            align-items: flex-start;
+          }
+
+          .saved-roll > div:first-child {
+            min-width: 0;
+          }
+
+          .saved-roll-right {
+            min-width: 82px;
+          }
+
+          .submission-grid {
+            display: grid;
+            grid-template-columns:
+              repeat(
+                2,
+                minmax(
+                  0,
+                  1fr
+                )
+              );
+            gap: 8px;
+          }
+
+          .submission-item {
+            min-width: 0;
+          }
+
+          .submission-button {
+            width: 100%;
+            min-width: 0;
+            height: 44px;
+            padding: 0 9px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+
+          .minus-button {
+            flex: 0 0 34px;
+          }
+
+          .modal-primary {
+            position: sticky;
+            bottom: 0;
+            z-index: 3;
+            box-shadow:
+              0 -12px 24px
+              rgba(
+                9,
+                10,
+                12,
+                0.92
+              );
+          }
+        }
+
         @media (min-width: 760px) {
           .modal-root {
             align-items: center;
@@ -3059,4 +3214,5 @@ export default function TrainPage() {
     </>
   );
 }
+
 
