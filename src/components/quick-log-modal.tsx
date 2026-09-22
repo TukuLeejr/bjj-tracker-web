@@ -2505,6 +2505,42 @@ export default function QuickLogModal({
           text-align: center;
         }
 
+        .text-input,
+        .textarea {
+          width: 100%;
+          border: 1px solid #30343b;
+          border-radius: 14px;
+          background: #111418;
+          color: #ffffff;
+          font: inherit;
+          outline: none;
+          box-shadow: none;
+        }
+
+        .text-input {
+          min-height: 50px;
+          padding: 0 14px;
+        }
+
+        .textarea {
+          min-height: 118px;
+          padding: 13px 14px;
+          resize: vertical;
+          line-height: 1.5;
+        }
+
+        .text-input::placeholder,
+        .textarea::placeholder {
+          color: #666b73;
+          opacity: 1;
+        }
+
+        .text-input:focus,
+        .textarea:focus {
+          border-color: #555b63;
+          background: #14171b;
+        }
+
         .submission-heading {
           margin: 8px 0 10px;
           font-size: 10px;
