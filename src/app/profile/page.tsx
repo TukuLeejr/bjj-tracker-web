@@ -1330,7 +1330,7 @@ export default function ProfilePage() {
         .eyebrow {
           color: #777c85;
           font-size: 11px;
-          font-weight: 900;
+          font-weight: 800;
           letter-spacing: 0.16em;
         }
 
@@ -1339,7 +1339,7 @@ export default function ProfilePage() {
           color: #ffffff;
           font-size: 34px;
           line-height: 1;
-          font-weight: 900;
+          font-weight: 800;
           letter-spacing: -0.04em;
         }
 
@@ -1354,10 +1354,12 @@ export default function ProfilePage() {
         }
 
         h2 {
-          margin: 28px 0 12px;
+          margin: 30px 0 12px;
           color: #ffffff;
-          font-size: 18px;
-          font-weight: 900;
+          font-size: 19px;
+          line-height: 1.2;
+          font-weight: 800;
+          letter-spacing: -0.02em;
         }
 
         .weight-card,
@@ -1383,7 +1385,7 @@ export default function ProfilePage() {
         .detail-eyebrow {
           color: #777c85;
           font-size: 9px;
-          font-weight: 900;
+          font-weight: 800;
           letter-spacing: 0.1em;
         }
 
@@ -1391,7 +1393,7 @@ export default function ProfilePage() {
           margin-top: 4px;
           color: #ffffff;
           font-size: 15px;
-          font-weight: 850;
+          font-weight: 800;
         }
 
         .clear-button {
@@ -1401,7 +1403,7 @@ export default function ProfilePage() {
           background: transparent;
           color: #777c85;
           font-size: 9px;
-          font-weight: 900;
+          font-weight: 800;
           cursor: pointer;
         }
 
@@ -1443,19 +1445,21 @@ export default function ProfilePage() {
           background: transparent;
           color: #ffffff;
           font-size: 19px;
-          font-weight: 850;
+          font-weight: 800;
           outline: none;
         }
 
         .goal-card {
-          margin-bottom: 12px;
+          margin-bottom: 14px;
+          padding: 20px;
         }
 
         .goal-help {
-          margin-top: 11px;
-          color: #646a72;
-          font-size: 10px;
-          text-align: center;
+          margin-top: 12px;
+          color: #777c85;
+          font-size: 11px;
+          line-height: 1.4;
+          text-align: left;
         }
 
         .library-button {
@@ -1570,7 +1574,7 @@ export default function ProfilePage() {
           background: #ffffff;
           color: #090a0c;
           font-size: 13px;
-          font-weight: 950;
+          font-weight: 800;
           letter-spacing: 0.05em;
           cursor: pointer;
         }
@@ -1644,7 +1648,7 @@ export default function ProfilePage() {
           color: #ffffff;
           font-size: 34px;
           line-height: 1;
-          font-weight: 900;
+          font-weight: 800;
           letter-spacing: -0.04em;
         }
 
@@ -1672,7 +1676,7 @@ export default function ProfilePage() {
           margin: 20px 0 9px;
           color: #777c85;
           font-size: 9px;
-          font-weight: 900;
+          font-weight: 800;
           letter-spacing: 0.1em;
         }
 
@@ -1714,7 +1718,7 @@ export default function ProfilePage() {
         .confidence-summary span {
           color: #777c85;
           font-size: 9px;
-          font-weight: 900;
+          font-weight: 800;
           letter-spacing: 0.08em;
         }
 
@@ -1730,7 +1734,7 @@ export default function ProfilePage() {
           background: #ffffff;
           color: #090a0c;
           font-size: 12px;
-          font-weight: 950;
+          font-weight: 800;
           cursor: pointer;
         }
 
@@ -1778,7 +1782,7 @@ export default function ProfilePage() {
           background: #ffffff;
           color: #090a0c;
           font-size: 12px;
-          font-weight: 950;
+          font-weight: 800;
           cursor: pointer;
         }
 
@@ -1875,7 +1879,7 @@ export default function ProfilePage() {
         .notes-preview small {
           color: #5f646b;
           font-size: 8px;
-          font-weight: 900;
+          font-weight: 800;
           letter-spacing: 0.1em;
         }
 
@@ -1890,7 +1894,7 @@ export default function ProfilePage() {
           margin-top: 13px;
           color: #a4a9b0;
           font-size: 10px;
-          font-weight: 900;
+          font-weight: 800;
           text-align: right;
         }
 
@@ -2078,7 +2082,7 @@ function TechniqueDetail({
         .detail-eyebrow-local {
           color: #777c85;
           font-size: 11px;
-          font-weight: 900;
+          font-weight: 800;
           letter-spacing: 0.16em;
         }
 
@@ -2087,7 +2091,7 @@ function TechniqueDetail({
           color: #ffffff;
           font-size: 34px;
           line-height: 1;
-          font-weight: 900;
+          font-weight: 800;
           letter-spacing: -0.04em;
         }
 
@@ -2104,7 +2108,7 @@ function TechniqueDetail({
           background: #1c1f23;
           color: #a3a7ae;
           font-size: 10px;
-          font-weight: 900;
+          font-weight: 800;
           text-transform: uppercase;
         }
 
@@ -2124,7 +2128,7 @@ function TechniqueDetail({
         .confidence-card-local > span {
           color: #777c85;
           font-size: 9px;
-          font-weight: 900;
+          font-weight: 800;
           letter-spacing: 0.1em;
         }
 
@@ -2180,14 +2184,14 @@ function TechniqueDetail({
         .stats-local strong {
           color: #ffffff;
           font-size: 20px;
-          font-weight: 900;
+          font-weight: 800;
         }
 
         .stats-local span {
           margin-top: 5px;
           color: #666b73;
           font-size: 8px;
-          font-weight: 900;
+          font-weight: 800;
           letter-spacing: 0.08em;
         }
 
@@ -2222,7 +2226,7 @@ function TechniqueDetail({
           background: #1b1112;
           color: #ff453a;
           font-size: 11px;
-          font-weight: 900;
+          font-weight: 800;
           letter-spacing: 0.06em;
           cursor: pointer;
         }
@@ -2230,5 +2234,6 @@ function TechniqueDetail({
     </div>
   );
 }
+
 
 

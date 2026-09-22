@@ -1616,7 +1616,7 @@ export default function HomePage() {
           .eyebrow {
             color: #777c85;
             font-size: 12px;
-            font-weight: 900;
+            font-weight: 800;
             letter-spacing: 0.16em;
           }
 
@@ -1625,7 +1625,7 @@ export default function HomePage() {
             color: #ffffff;
             font-size: clamp(30px, 7vw, 42px);
             line-height: 1;
-            font-weight: 900;
+            font-weight: 800;
             letter-spacing: -0.045em;
           }
 
@@ -1668,7 +1668,7 @@ export default function HomePage() {
 
           .start-title {
             font-size: 17px;
-            font-weight: 950;
+            font-weight: 800;
             letter-spacing: 0.04em;
           }
 
@@ -1720,7 +1720,7 @@ export default function HomePage() {
           .quick-title {
             color: #ffffff;
             font-size: 15px;
-            font-weight: 900;
+            font-weight: 800;
             letter-spacing: 0.04em;
           }
 
@@ -1778,7 +1778,7 @@ export default function HomePage() {
             background: #202328;
             color: #777c85;
             font-size: 9px;
-            font-weight: 900;
+            font-weight: 800;
             letter-spacing: 0.1em;
           }
 
@@ -1794,7 +1794,7 @@ export default function HomePage() {
             margin: 0 0 12px;
             color: #ffffff;
             font-size: 19px;
-            font-weight: 900;
+            font-weight: 800;
             letter-spacing: -0.025em;
           }
 
@@ -1832,7 +1832,7 @@ export default function HomePage() {
             color: #ffffff;
             font-size: 28px;
             line-height: 1;
-            font-weight: 900;
+            font-weight: 800;
             letter-spacing: -0.04em;
             text-overflow: ellipsis;
           }
@@ -1842,47 +1842,58 @@ export default function HomePage() {
             margin-top: 7px;
             color: #727780;
             font-size: 10px;
-            font-weight: 900;
+            font-weight: 800;
             letter-spacing: 0.1em;
           }
 
           .trends-card,
           .momentum-card {
             margin-bottom: 28px;
-            padding: 0 18px;
             border: 1px solid #23262b;
             border-radius: 20px;
             background: #141619;
           }
 
-          .trend-row {
-            padding: 18px 0;
+          .trends-card {
+            display: grid;
+            grid-template-columns: 1fr;
+            overflow: hidden;
+            padding: 0;
           }
 
-          .trend-row-top {
+          .momentum-card {
+            padding: 0 18px;
+          }
+
+          :global(.trend-row) {
+            min-width: 0;
+            padding: 18px;
+          }
+
+          :global(.trend-row-top) {
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 15px;
           }
 
-          .trend-label {
+          :global(.trend-label) {
             color: #777c85;
             font-size: 10px;
-            font-weight: 900;
+            font-weight: 800;
             letter-spacing: 0.1em;
           }
 
-          .trend-number {
+          :global(.trend-number) {
             margin-top: 5px;
             color: #ffffff;
             font-size: 28px;
             line-height: 1;
-            font-weight: 900;
+            font-weight: 800;
             letter-spacing: -0.04em;
           }
 
-          .trend-badge {
+          :global(.trend-badge) {
             min-width: 78px;
             padding: 10px;
             border-radius: 12px;
@@ -1890,22 +1901,22 @@ export default function HomePage() {
             color: #c2c5ca;
             text-align: center;
             font-size: 13px;
-            font-weight: 900;
+            font-weight: 800;
           }
 
-          .trend-badge.up {
+          :global(.trend-badge.up) {
             border: 1px solid #236e35;
             background: #153a20;
             color: #45e06f;
           }
 
-          .trend-badge.down {
+          :global(.trend-badge.down) {
             border: 1px solid #773039;
             background: #401c21;
             color: #ff6970;
           }
 
-          .previous-row {
+          :global(.previous-row) {
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -1919,15 +1930,14 @@ export default function HomePage() {
             letter-spacing: 0.08em;
           }
 
-          .previous-row strong {
+          :global(.previous-row strong) {
             color: #8b9098;
             font-size: 11px;
             letter-spacing: 0;
           }
 
           .divider {
-            height: 1px;
-            background: #2b2e34;
+            display: none;
           }
 
           .momentum-row {
@@ -1969,7 +1979,7 @@ export default function HomePage() {
             color: #c2c5ca;
             text-align: center;
             font-size: 12px;
-            font-weight: 900;
+            font-weight: 800;
           }
 
           .momentum-badge.up {
@@ -2030,7 +2040,7 @@ export default function HomePage() {
 
           .goal-count {
             font-size: 17px;
-            font-weight: 900;
+            font-weight: 800;
           }
 
           .progress-background {
@@ -2075,7 +2085,7 @@ export default function HomePage() {
             display: block;
             color: #ffffff;
             font-size: 27px;
-            font-weight: 900;
+            font-weight: 800;
           }
 
           .overall-card span {
@@ -2083,7 +2093,7 @@ export default function HomePage() {
             margin-top: 5px;
             color: #727780;
             font-size: 9px;
-            font-weight: 900;
+            font-weight: 800;
             letter-spacing: 0.1em;
           }
 
@@ -2156,7 +2166,7 @@ export default function HomePage() {
             margin-top: 8px;
             color: #a5a9b0;
             font-size: 9px;
-            font-weight: 900;
+            font-weight: 800;
             letter-spacing: 0.06em;
           }
 
@@ -2190,6 +2200,29 @@ export default function HomePage() {
           @media (min-width: 760px) {
             .weekly-grid {
               grid-template-columns: repeat(4, minmax(0, 1fr));
+            }
+
+            .trends-card {
+              grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            :global(.trend-row) {
+              border-right: 1px solid #2b2e34;
+              border-bottom: 1px solid #2b2e34;
+            }
+
+            :global(.trend-row:nth-of-type(2n)) {
+              border-right: 0;
+            }
+
+            :global(.trend-row:nth-last-of-type(-n + 2)) {
+              border-bottom: 0;
+            }
+          }
+
+          @media (max-width: 759px) {
+            :global(.trend-row + .trend-row) {
+              border-top: 1px solid #2b2e34;
             }
           }
         `}</style>
